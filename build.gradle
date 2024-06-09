@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2' // Versão atualizada do plugin Shadow
+}
+
+group = 'dev.pretti'
+version = '1.0'
+
+/**
+ * DEFINES
+ */
+def finalName = "${project.name}-${project.version}.jar"
+def finalDirectory = "C:/Users/fabio/Desktop/DevTest/plugins/"
+
+/**
+ * TASKS
+ */
+tasks.build.dependsOn('shadowJar')
+
+task copyJar(type: Copy) {
+    from shadowJar.archiveFile
+    into finalDirectory
+}
+
+tasks.named('build') {
+    finalizedBy(copyJar)
+}
+
+/**
+ * COMPILER PROPERTIES
+ */
+shadowJar {
+    archiveFileName = finalName
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+/**
+ * REPOSITORIES
+ */
+repositories {
+    mavenCentral()
+
+    // Spigot
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+/**
+ * DEPENDENCIES
+ */
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Spigot
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+}

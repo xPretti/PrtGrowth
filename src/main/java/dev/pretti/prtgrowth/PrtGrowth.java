@@ -1,7 +1,7 @@
-package dev.pretti;
+package dev.pretti.prtgrowth;
 
-import dev.pretti.listeners.GrowListener;
-import dev.pretti.utils.LogUtils;
+import dev.pretti.prtgrowth.listeners.GrowListener;
+import dev.pretti.prtgrowth.utils.LogUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PrtGrowth extends JavaPlugin

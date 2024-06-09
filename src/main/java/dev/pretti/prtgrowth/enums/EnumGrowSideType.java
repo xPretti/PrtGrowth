@@ -1,4 +1,4 @@
-package dev.pretti.enums;
+package dev.pretti.prtgrowth.enums;
 
 public enum EnumGrowSideType
 {

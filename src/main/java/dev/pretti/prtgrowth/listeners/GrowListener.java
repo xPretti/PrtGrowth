@@ -1,7 +1,7 @@
-package dev.pretti.listeners;
+package dev.pretti.prtgrowth.listeners;
 
-import dev.pretti.enums.EnumGrowSideType;
-import dev.pretti.utils.GrowUtils;
+import dev.pretti.prtgrowth.enums.EnumGrowSideType;
+import dev.pretti.prtgrowth.utils.GrowUtils;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;

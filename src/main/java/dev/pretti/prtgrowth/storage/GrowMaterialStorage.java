@@ -1,6 +1,6 @@
-package dev.pretti.storage;
+package dev.pretti.prtgrowth.storage;
 
-import dev.pretti.datatypes.GrowState;
+import dev.pretti.prtgrowth.datatypes.GrowState;
 import org.bukkit.Material;
 
 import java.util.EnumMap;

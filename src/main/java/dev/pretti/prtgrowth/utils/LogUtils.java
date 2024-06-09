@@ -1,7 +1,7 @@
-package dev.pretti.utils;
+package dev.pretti.prtgrowth.utils;
 
-import dev.pretti.PrtGrowth;
-import dev.pretti.enums.EnumLoggerType;
+import dev.pretti.prtgrowth.PrtGrowth;
+import dev.pretti.prtgrowth.enums.EnumLoggerType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 

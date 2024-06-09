@@ -1,8 +1,8 @@
-package dev.pretti.utils;
+package dev.pretti.prtgrowth.utils;
 
-import dev.pretti.datatypes.GrowState;
-import dev.pretti.enums.EnumGrowSideType;
-import dev.pretti.storage.GrowMaterialStorage;
+import dev.pretti.prtgrowth.datatypes.GrowState;
+import dev.pretti.prtgrowth.enums.EnumGrowSideType;
+import dev.pretti.prtgrowth.storage.GrowMaterialStorage;
 import org.bukkit.Material;
 
 public class GrowUtils

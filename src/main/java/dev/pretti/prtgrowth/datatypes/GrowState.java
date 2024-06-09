@@ -1,4 +1,4 @@
-package dev.pretti.datatypes;
+package dev.pretti.prtgrowth.datatypes;
 
 import org.bukkit.Material;
 

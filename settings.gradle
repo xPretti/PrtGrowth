@@ -1,2 +1,3 @@
 rootProject.name = 'PrtGrowth'
 
+include 'core', 'versions:v1_8'

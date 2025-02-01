@@ -1,0 +1,38 @@
+/*
+ * Propriedades
+ */
+group = 'dev.pretti.prtgrowth'
+version = '1.0'
+
+/*
+ * Definições
+ */
+apply from: rootProject.file('defines.gradle')
+
+/**
+ * TASKS
+ */
+tasks.build.dependsOn('shadowJar')
+
+/**
+ * REPOSITORIES
+ */
+repositories {
+}
+
+dependencies {
+    // Spigot
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    //compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
+    //compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    //compileOnly 'org.spigotmc:spigot:1.13.2-R0.1-SNAPSHOT'
+}
+
+/**
+ * COMPILER PROPERTIES
+ */
+shadowJar {
+    archiveFileName = DEF_FINAL_NAME
+
+    mergeServiceFiles()
+}

@@ -1,16 +1,96 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2' // Versão atualizada do plugin Shadow
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group = 'dev.pretti'
+/*
+ * Propriedades
+ */
+group = 'dev.pretti.prtgrowth'
 version = '1.0'
 
-/**
- * DEFINES
+/*
+ * Definições
  */
-def finalName = "${project.name}-${project.version}.jar"
-def finalDirectory = "C:/Users/fabio/Desktop/DevTest/plugins/"
+apply from: rootProject.file('defines.gradle')
+
+/*
+ * Configurações dos subprojetos
+ */
+allprojects {
+    repositories {
+        mavenCentral()
+
+        // Repositório local
+        maven {
+            url "${DEF_REPOSITORY_DIR}"
+        }
+
+        // Spigos
+        maven {
+            url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url 'https://repo.codemc.io/repository/nms/'
+        }
+        maven {
+            url 'https://repo.codemc.io/repository/maven-public/'
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'java'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.10.0')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+
+        // Annotations
+        compileOnly 'org.jetbrains:annotations:24.0.0'
+    }
+
+    compileJava {
+        options.encoding = 'UTF-8'
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+/**
+ * Shadow JAR
+ */
+shadowJar {
+    archiveFileName = DEF_FINAL_NAME
+
+    mergeServiceFiles()
+
+    from(sourceSets.main.output)
+
+
+    subprojects.each { subproject ->
+        from(subproject.tasks.shadowJar.archiveFile) {
+            relocate 'dev.pretti.treasuresapi', 'dev.pretti.prtminetreasures.libs.treasuresapi'
+            relocate 'de.tr7zw.changeme.nbtapi', 'dev.pretti.prtminetreasures.libs.nbtapi'
+
+            minimize() {
+                exclude("dev.pretti.prtminetreasures.libs.treasuresapi.*")
+            }
+        }
+    }
+
+    manifest {
+        attributes(
+                'Main-Class': 'dev.pretti.prtgrowth.PrtGrowth' // Ajuste para sua classe principal
+        )
+    }
+}
+
 
 /**
  * TASKS
@@ -19,48 +99,9 @@ tasks.build.dependsOn('shadowJar')
 
 task copyJar(type: Copy) {
     from shadowJar.archiveFile
-    into finalDirectory
+    into DEF_FINAL_DIR
 }
 
 tasks.named('build') {
     finalizedBy(copyJar)
-}
-
-/**
- * COMPILER PROPERTIES
- */
-shadowJar {
-    archiveFileName = finalName
-}
-
-compileJava {
-    options.encoding = 'UTF-8'
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-
-/**
- * REPOSITORIES
- */
-repositories {
-    mavenCentral()
-
-    // Spigot
-    maven {
-        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        url = "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-}
-
-/**
- * DEPENDENCIES
- */
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-
-    // Spigot
-    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
 }

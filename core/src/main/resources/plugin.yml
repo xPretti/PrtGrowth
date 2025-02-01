@@ -1,0 +1,9 @@
+name: PrtGrowth
+version: 1.0
+main: dev.pretti.prtgrowth.PrtGrowth
+author: Pretti_
+api-version: 1.13
+
+commands:
+  PrtGrowth:
+    aliases: [growth]

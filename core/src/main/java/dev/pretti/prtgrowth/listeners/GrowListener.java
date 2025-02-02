@@ -2,43 +2,41 @@ package dev.pretti.prtgrowth.listeners;
 
 import dev.pretti.prtgrowth.PrtGrowth;
 import dev.pretti.prtgrowth.configs.interfaces.IPlantsConfig;
-import dev.pretti.prtgrowth.providers.IGrowthPlant;
-import dev.pretti.prtgrowth.storage.GrowthPlantStorage;
+import dev.pretti.prtgrowth.providers.IGrowthManager;
+import dev.pretti.prtgrowth.versions.VersionsManager;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockGrowEvent;
 
 public class GrowListener implements Listener
 {
-  private final IPlantsConfig      plantsConfig;
-  private final GrowthPlantStorage growthPlantStorage;
+  private final IPlantsConfig   plantsConfig;
+  private final VersionsManager versionsManager;
 
   /**
    * Contrutor da classe
    */
   public GrowListener(PrtGrowth plugin)
   {
-    this.growthPlantStorage = plugin.getGrowthPlantStorage();
-    this.plantsConfig       = plugin.getConfigManager().getPlantsConfig();
+    this.plantsConfig    = plugin.getConfigManager().getPlantsConfig();
+    this.versionsManager = plugin.getVersionsManager();
   }
 
   /**
    * Evento de crescimento
    */
-  @EventHandler
+  @EventHandler(priority = EventPriority.HIGHEST)
   public void onGrow(BlockGrowEvent event)
   {
-    Block        block = event.getBlock();
-    IGrowthPlant plant = growthPlantStorage.getGrowthPlant(block.getType());
-    if(plant != null)
+    Block block = event.getBlock();
+    if(plantsConfig.isPass(block.getType()))
       {
-        if(plantsConfig.isPass(block.getType()))
+        IGrowthManager growthManager = versionsManager.getGrowthManager();
+        if(growthManager != null && versionsManager.getGrowthManager().grow(block))
           {
-            if(plant.grow(block))
-              {
-                event.setCancelled(true);
-              }
+            event.setCancelled(true);
           }
       }
   }

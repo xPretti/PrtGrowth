@@ -67,9 +67,8 @@ public class PlantsLoader implements IConfigLoader
                       }
                     output.getPlants().add(plantMat);
                   }
-                return isSucess;
               }
-            return true;
+            return isSucess;
           }
       }
     return false;

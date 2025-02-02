@@ -1,4 +1,4 @@
-package dev.pretti.prtgrowth.versions.v1_8;
+package dev.pretti.prtgrowth.versions.v1_9;
 
 import dev.pretti.prtgrowth.versions.legacy.interfaces.IGrowthPlant;
 import dev.pretti.prtgrowth.versions.legacy.interfaces.IGrowthPlantLoader;
@@ -21,6 +21,7 @@ public class GrowthPlantLoader implements IGrowthPlantLoader
             new GrowthPlant(Material.PUMPKIN_STEM, 7),
             new GrowthPlant(Material.MELON_STEM, 7),
             new GrowthPlant(Material.NETHER_WARTS, 3),
-            new CocoaGrowthPlant());
+            new CocoaGrowthPlant(),
+            new GrowthPlant(Material.BEETROOT_BLOCK, 3));
   }
 }

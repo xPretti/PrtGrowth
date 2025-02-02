@@ -1,4 +1,4 @@
-package dev.pretti.prtgrowth.providers;
+package dev.pretti.prtgrowth.versions.legacy.interfaces;
 
 import java.util.List;
 

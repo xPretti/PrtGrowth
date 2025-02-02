@@ -1,6 +1,6 @@
-package dev.pretti.prtgrowth.versions.v1_8.types;
+package dev.pretti.prtgrowth.versions.legacy.plants;
 
-import dev.pretti.prtgrowth.providers.IGrowthPlant;
+import dev.pretti.prtgrowth.versions.legacy.interfaces.IGrowthPlant;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;

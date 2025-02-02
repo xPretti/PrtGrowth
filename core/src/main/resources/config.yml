@@ -16,6 +16,6 @@
 #
 plants:
   method: BLACKLIST
-  values: [] # Remove '[]' and add materials types
+  values: [] # Remove '[]' and add materials plants
   #- "CARROT"
   #- "POTATO"

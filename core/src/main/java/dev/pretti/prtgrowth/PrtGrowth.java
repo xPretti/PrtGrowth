@@ -3,7 +3,6 @@ package dev.pretti.prtgrowth;
 import dev.pretti.prtgrowth.commands.GrowthCommand;
 import dev.pretti.prtgrowth.configs.ConfigManager;
 import dev.pretti.prtgrowth.listeners.GrowListener;
-import dev.pretti.prtgrowth.storage.GrowthPlantStorage;
 import dev.pretti.prtgrowth.utils.LogUtils;
 import dev.pretti.prtgrowth.versions.VersionsManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,8 +11,7 @@ public class PrtGrowth extends JavaPlugin
 {
   private static PrtGrowth          instance;
   private final  ConfigManager      configManager      = new ConfigManager(getDataFolder().getPath());
-  private final  GrowthPlantStorage growthPlantStorage = new GrowthPlantStorage();
-  private final  VersionsManager    versionsManager    = new VersionsManager(growthPlantStorage);
+  private final  VersionsManager    versionsManager    = new VersionsManager();
 
   private boolean isInitialized;
 
@@ -104,11 +102,6 @@ public class PrtGrowth extends JavaPlugin
   public ConfigManager getConfigManager()
   {
     return configManager;
-  }
-
-  public GrowthPlantStorage getGrowthPlantStorage()
-  {
-    return growthPlantStorage;
   }
 
   public VersionsManager getVersionsManager()

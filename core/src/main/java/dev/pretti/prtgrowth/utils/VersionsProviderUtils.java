@@ -1,7 +1,7 @@
 package dev.pretti.prtgrowth.utils;
 
 import dev.pretti.prtgrowth.PrtGrowth;
-import dev.pretti.prtgrowth.providers.IGrowthPlantLoader;
+import dev.pretti.prtgrowth.providers.IGrowthManager;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,14 +26,14 @@ public class VersionsProviderUtils
   /**
    * Método de retornos de classes
    */
-  public static IGrowthPlantLoader getGrowthPlantLoader(String version)
+  public static IGrowthManager getGrowthManager(String version)
   {
     try
       {
-        return (IGrowthPlantLoader) Class.forName(getVersionsPackage(version) + ".GrowthPlantLoader").getDeclaredConstructor().newInstance();
+        return (IGrowthManager) Class.forName(getVersionsPackage(version) + ".GrowthManager").getDeclaredConstructor().newInstance();
       } catch(ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e)
       {
-        Bukkit.getLogger().severe("§cInvalid GrowthPlantLoader provider in version " + version + ": " + e.getMessage());
+        Bukkit.getLogger().severe("§cInvalid GrowthManager provider in version " + version + ": " + e.getMessage());
         return null;
       }
   }

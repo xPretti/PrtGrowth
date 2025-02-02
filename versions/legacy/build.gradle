@@ -16,12 +16,10 @@ tasks.build.dependsOn('shadowJar')
 
 tasks.named('compileJava') {
     dependsOn ':core:shadowJar'
-    dependsOn ':versions:legacy:shadowJar'
 }
 
 tasks.named('build') {
     dependsOn ':core:shadowJar'
-    dependsOn ':versions:legacy:shadowJar'
 }
 
 
@@ -32,11 +30,10 @@ repositories {
 }
 
 dependencies {
-    api project(':versions:legacy')
+    api project(':core')
 
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    //compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 }
 
 /**

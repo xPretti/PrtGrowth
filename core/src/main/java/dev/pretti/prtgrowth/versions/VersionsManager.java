@@ -1,12 +1,27 @@
 package dev.pretti.prtgrowth.versions;
 
-import dev.pretti.prtgrowth.storage.GrowthPlantStorage;
+import dev.pretti.prtgrowth.providers.IGrowthManager;
 import dev.pretti.prtgrowth.versions.loaders.PlantsProviders;
+import org.jetbrains.annotations.Nullable;
 
 public class VersionsManager
 {
-  public VersionsManager(GrowthPlantStorage growthPlantStorage)
+  private final IGrowthManager growthManager;
+
+  /**
+  * Contrutor da classe
+  */
+  public VersionsManager()
   {
-    new PlantsProviders(growthPlantStorage).load();
+    growthManager = new PlantsProviders().load();
+  }
+
+  /**
+   * Retornos
+   */
+  @Nullable
+  public IGrowthManager getGrowthManager()
+  {
+    return growthManager;
   }
 }

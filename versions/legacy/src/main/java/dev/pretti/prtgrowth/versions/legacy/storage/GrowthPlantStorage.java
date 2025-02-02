@@ -1,6 +1,6 @@
-package dev.pretti.prtgrowth.storage;
+package dev.pretti.prtgrowth.versions.legacy.storage;
 
-import dev.pretti.prtgrowth.providers.IGrowthPlant;
+import dev.pretti.prtgrowth.versions.legacy.interfaces.IGrowthPlant;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
